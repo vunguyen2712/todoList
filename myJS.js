@@ -142,7 +142,7 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
 
 		$mdToast.show(
 		  $mdToast.simple()
-		    .textContent('Your todo has been added Toast!')
+		    .content('Your todo has been added Toast!')
 		    .position('top right')
 		    .hideDelay(3000)
 		);
