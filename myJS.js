@@ -121,15 +121,10 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
       controller: DialogController,
       controllerAs: 'dc',
       templateUrl: 'add.html',
-      scope: $scope,
       targetEvent: ev,
-      locals: {
-        todo: $scope.todo
-    	},
       clickOutsideToClose:true
     })
     .then(function(answer) {
-
     	var item = {
 				what: $scope.what,
 		        where: $scope.where,
@@ -138,7 +133,7 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
 
 		};
 		alert($scope.what);
-		$scope.todo.push(item);
+		$scope.data.push(item);
 
 		$mdToast.show(
 		  $mdToast.simple()
@@ -170,6 +165,7 @@ app.controller('ListBottomSheetCtrl', function($scope, $mdBottomSheet) {
 });
 
 function DialogController($scope, $mdDialog, $mdToast) {
+	this.parent = $scope;
   $scope.hide = function() {
     $mdDialog.hide();
   };
