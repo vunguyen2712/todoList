@@ -127,26 +127,11 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
   $scope.showAdd = function(ev) {
     $mdDialog.show({
       controller: DialogController,
-      template: '<md-dialog aria-label="Mango (Fruit)"> <md-content class="md-padding"> <form name="addForm" ng-submit="submitAddForm()"> <md-input-container flex> <label>What</label> <input ng-model="what" placeholder="What"> </md-input-container> <md-input-container flex> <label>Where</label> <input ng-model="where"> </md-input-container> <md-input-container flex> <label>When</label> <input ng-model="when"  placeholder="Enter time. Ex: 5:00 PM"> </md-input-container> <md-input-container flex> <label>Notes</label> <input ng-model="notes" columns="1" md-maxlength="150"></md-input-container> </form> </md-content> <div class="md-actions" layout="row"> <span flex></span> <md-button ng-click="answer(\'not useful\')"> Cancel </md-button> <md-button ng-click="answer(\'useful\')" class="md-primary"> Save </md-button> </div></md-dialog>',
+      template: '<md-dialog aria-label="Mango (Fruit)"> <md-content class="md-padding"> <form name="addForm"  > <md-input-container flex> <label>What</label> <input ng-model="what" placeholder="What"> </md-input-container> <md-input-container flex> <label>Where</label> <input ng-model="where"> </md-input-container> <md-input-container flex> <label>When</label> <input ng-model="when"  placeholder="Enter time. Ex: 5:00 PM"> </md-input-container> <md-input-container flex> <label>Notes</label> <input ng-model="notes" columns="1" md-maxlength="150"></md-input-container> </form> </md-content> <div class="md-actions" layout="row"> <span flex></span> <md-button ng-click="answer(\'not useful\')"> Cancel </md-button> <md-button ng-click="answer(\'useful\')" class="md-primary"> Save </md-button> </div></md-dialog>',
       targetEvent: ev,
+      clickOutsideToClose:true,
     })
     .then(function(answer) {
-    	var item = {
-				what: answer.what,
-		        where: answer.where,
-		        when: answer.when,
-		        notes: answer.notes
-
-		};
-		$scope.todo.push(item);
-
-		$mdToast.show(
-		  $mdToast.simple()
-		    .content('Your todo has been added Toast!')
-		    .position('top right')
-		    .hideDelay(3000)
-		);
-
       $scope.alert = 'You said the information was "' + answer + '".';
     }, function() {
       $scope.alert = 'You cancelled the dialog.';
@@ -170,7 +155,7 @@ app.controller('ListBottomSheetCtrl', function($scope, $mdBottomSheet) {
   };
 });
 
-function DialogController($scope, $mdDialog) {
+function DialogController($scope, $mdDialog, $mdToast) {
   $scope.hide = function() {
     $mdDialog.hide();
   };
@@ -178,6 +163,24 @@ function DialogController($scope, $mdDialog) {
     $mdDialog.cancel();
   };
   $scope.answer = function(answer) {
+  	todo = $scope.todo;
+  	var item = {
+				what: $scope.what,
+		        where: $scope.where,
+		        when: $scope.when,
+		        notes: $scope.notes
+
+		};
+		alert($scope.what);
+	$scope.todo.push(item);
+
+	$mdToast.show(
+	  $mdToast.simple()
+	    .content('Your todo has been added Toast!')
+	    .position('top right')
+	    .hideDelay(3000)
+	);
+
     $mdDialog.hide(answer);
   };
 };
@@ -195,13 +198,16 @@ app.config(function($mdThemingProvider) {
     'contrastDarkColors': ['50'],
     '50': 'ffffff'
   });
-  $mdThemingProvider.definePalette('customBlue', customBlueMap);
   $mdThemingProvider.theme('default')
-    .primaryPalette('customBlue', {
-      'default': '500',
-      'hue-1': '50'
-    })
-    .accentPalette('pink');
-  $mdThemingProvider.theme('input', 'default')
-        .primaryPalette('grey')
+  		.primaryPalette('lime')
+  		.accentPalette('orange');
+  // $mdThemingProvider.definePalette('customBlue', customBlueMap);
+  // $mdThemingProvider.theme('default')
+  //   .primaryPalette('customBlue', {
+  //     'default': '500',
+  //     'hue-1': '50'
+  //   })
+  //   .accentPalette('pink');
+  // $mdThemingProvider.theme('input', 'default')
+  //       .primaryPalette('grey')
 });
