@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="myCSS.css">
   </head>
   <body layout="row" ng-controller="AppCtrl">
-    <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+    <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" >
       <md-toolbar class="md-tall md-hue-2">
         <span flex></span>
         <div layout="column" class="md-toolbar-tools-bottom inset">
@@ -80,7 +80,7 @@
           </h3>
           <md-input-container md-theme="input" flex>
             <label>&nbsp;</label>
-            <input ng-model="search.who" placeholder="enter search">
+            <input ng-model="search" placeholder="Enter search for instant results!">
           </md-input-container>
           <md-button aria-label="Search" ng-click="showSearch = !showSearch">
             <ng-md-icon icon="search"></ng-md-icon>

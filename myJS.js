@@ -1,18 +1,18 @@
 var app = angular.module('StarterApp', ['ngMaterial', 'ngMdIcons']);
 
-app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog', function($scope, $mdBottomSheet, $mdSidenav, $mdDialog){
+app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog', '$mdToast', function($scope, $mdBottomSheet, $mdSidenav, $mdDialog, $mdToast){
   $scope.toggleSidenav = function(menuId) {
     $mdSidenav(menuId).toggle();
   };
  	$scope.menu = [
     {
       link : '',
-      title: 'Dashboard',
-      icon: 'dashboard'
+      title: 'Home',
+      icon: 'home'
     },
     {
       link : '',
-      title: 'Friends',
+      title: 'Todo List',
       icon: 'group'
     },
     {
@@ -98,6 +98,20 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
         notes: "We should eat this: Grapefruit, Squash, Corn, and Tomatillo tacos"
       },
     ];
+
+  $scope.toastPosition = {
+    bottom: true,
+    top: false,
+    left: true,
+    right: false
+  };
+
+  $scope.getToastPosition = function() {
+    return Object.keys($scope.toastPosition)
+      .filter(function(pos) { return $scope.toastPosition[pos]; })
+      .join(' ');
+  };
+
   $scope.alert = '';
   $scope.showListBottomSheet = function($event) {
     $scope.alert = '';
@@ -113,15 +127,33 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
   $scope.showAdd = function(ev) {
     $mdDialog.show({
       controller: DialogController,
-      template: '<md-dialog aria-label="Mango (Fruit)"> <md-content class="md-padding"> <form name="userForm">  <md-input-container flex> <label>What</label> <input ng-model="user.firstName" placeholder="What"> </md-input-container> <md-input-container flex> <label>Where</label> <input ng-model="theMax"> </md-input-container> <md-input-container flex> <label>When</label> <input ng-model="user.address"  placeholder="Enter time. Ex: 5:00 PM"> </md-input-container> <div layout layout="column"> <md-input-container flex> <label>Biography</label> <textarea ng-model="user.biography" columns="1" md-maxlength="150"></textarea> </md-input-container> </form> </md-content> <div class="md-actions" layout="row"> </div> <span flex></span> <md-button ng-click="answer(\'not useful\')"> Cancel </md-button> <md-button ng-click="answer(\'useful\')" class="md-primary"> Save </md-button> </div></md-dialog>',
+      template: '<md-dialog aria-label="Mango (Fruit)"> <md-content class="md-padding"> <form name="addForm" ng-submit="submitAddForm()"> <md-input-container flex> <label>What</label> <input ng-model="what" placeholder="What"> </md-input-container> <md-input-container flex> <label>Where</label> <input ng-model="where"> </md-input-container> <md-input-container flex> <label>When</label> <input ng-model="when"  placeholder="Enter time. Ex: 5:00 PM"> </md-input-container> <md-input-container flex> <label>Notes</label> <input ng-model="notes" columns="1" md-maxlength="150"></md-input-container> </form> </md-content> <div class="md-actions" layout="row"> <span flex></span> <md-button ng-click="answer(\'not useful\')"> Cancel </md-button> <md-button ng-click="answer(\'useful\')" class="md-primary"> Save </md-button> </div></md-dialog>',
       targetEvent: ev,
     })
     .then(function(answer) {
+    	var item = {
+				what: answer.what,
+		        where: answer.where,
+		        when: answer.when,
+		        notes: answer.notes
+
+		};
+		$scope.todo.push(item);
+
+		$mdToast.show(
+		  $mdToast.simple()
+		    .textContent('Your todo has been added Toast!')
+		    .position('top right')
+		    .hideDelay(3000)
+		);
+
       $scope.alert = 'You said the information was "' + answer + '".';
     }, function() {
       $scope.alert = 'You cancelled the dialog.';
     });
   };
+
+
 }]);
 
 app.controller('ListBottomSheetCtrl', function($scope, $mdBottomSheet) {
