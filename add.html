@@ -1,0 +1,27 @@
+<md-dialog aria-label="Mango (Fruit)"> 
+	<md-content class="md-padding"> 
+		<form name="addForm"  > 
+			<md-input-container flex> 
+				<label>What</label> 
+				<input ng-model="dc.what" placeholder="What"> 
+			</md-input-container> 
+			<md-input-container flex> 
+				<label>Where</label> 
+				<input ng-model="dc.where"> 
+			</md-input-container> 
+			<md-input-container flex> 
+				<label>When</label> 
+				<input ng-model="dc.when"  placeholder="Enter time. Ex: 5:00 PM"> 
+			</md-input-container> 
+			<md-input-container flex> 
+				<label>Notes</label> 
+				<input ng-model="dc.notes" columns="1" md-maxlength="150">
+			</md-input-container> 
+		</form> 
+	</md-content>
+	<div class="md-actions" layout="row"> 
+		<span flex></span> 
+		<md-button ng-click="answer('not useful')"> Cancel </md-button> 
+		<md-button ng-click="answer('useful')" class="md-primary"> Save </md-button> 
+ 	</div>
+</md-dialog>
