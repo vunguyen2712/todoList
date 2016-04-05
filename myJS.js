@@ -1,19 +1,25 @@
 var app = angular.module('StarterApp', ['ngMaterial', 'ngMdIcons']);
 
-app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog', '$mdToast', function($scope, $mdBottomSheet, $mdSidenav, $mdDialog, $mdToast){
+app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog', '$mdToast',
+
+    function($scope, $mdBottomSheet, $mdSidenav, $mdDialog, $mdToast){
   $scope.toggleSidenav = function(menuId) {
     $mdSidenav(menuId).toggle();
   };
  	$scope.menu = [
     {
-      link : '',
-      title: 'Home',
-      icon: 'home'
+        url: './home.html',
+        description: 'Home view',
+        link : '',
+        title: 'Home',
+        icon: 'home'
     },
     {
-      link : '',
-      title: 'Todo List',
-      icon: 'message'
+        url: './main.html',
+        description: 'Todo List View',
+        link : '',
+        title: 'Todo List',
+        icon: 'message'
     }
     
   ];
@@ -90,13 +96,29 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
         notes: "We should eat this: Grapefruit, Squash, Corn, and Tomatillo tacos"
       },
     ];
+    $scope.checkHovered = false;
+    $scope.hoverIcon = 'check';
+    $scope.$watch('$scope.checkHovered', function(checkHovered){
+        if(checkHovered){
+            return 'check_circle';
+        }else{
+            return 'check';
+        }
+    })
+    $scope.currentPage = null;
+    $scope.pages = [
+        {"url": "/home", "discription":"Home"},
+        {"url": "/view1", "discription":"Todo List"}
 
-  $scope.toastPosition = {
-    bottom: true,
-    top: false,
-    left: true,
-    right: false
-  };
+    ];
+
+    $scope.isPageSelected = function(page) {
+        return ($scope.currentPage === page);
+    };
+
+    $scope.toggleSelectPage = function(page) {
+        $scope.currentPage = page;
+    };
 
   $scope.getToastPosition = function() {
     return Object.keys($scope.toastPosition)
@@ -122,18 +144,19 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
       controllerAs: 'dc',
       templateUrl: 'add.html',
       targetEvent: ev,
+
       clickOutsideToClose:true
     })
-    .then(function(answer) {
-    	var item = {
-				what: $scope.what,
-		        where: $scope.where,
-		        when: $scope.when,
-		        notes: $scope.notes
+    .then(function( answer) {  // save goes here
+        var item = {
+            what: answer.what,
+            where: answer.where,
+            when: answer.when,
+            notes: answer.notes
+        };
+        // alert(answer.what);
 
-		};
-		alert($scope.what);
-		$scope.data.push(item);
+		$scope.todo.push(item);
 
 		$mdToast.show(
 		  $mdToast.simple()
@@ -142,13 +165,21 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
 		    .hideDelay(3000)
 		);
       $scope.alert = 'You said the information was "' + answer + '".';
-    }, function() {
+    }, function() { // cancel goes here
       $scope.alert = 'You cancelled the dialog.';
     });
   };
 
 
 }]);
+
+
+// app.factory("Data", function() {
+//
+//     return {
+//
+//     };
+// })
 
 app.controller('ListBottomSheetCtrl', function($scope, $mdBottomSheet) {
   $scope.items = [
@@ -165,15 +196,17 @@ app.controller('ListBottomSheetCtrl', function($scope, $mdBottomSheet) {
 });
 
 function DialogController($scope, $mdDialog, $mdToast) {
-	this.parent = $scope;
+  // $scope.todo = angular.copy( );
+
   $scope.hide = function() {
-    $mdDialog.hide();
+    $mdDialog.cancel();  // $mdDialog.hide() --> khi muon return answer
   };
   $scope.cancel = function() {
     $mdDialog.cancel();
   };
-  $scope.answer = function(answer) {
-    $mdDialog.hide(answer);
+  $scope.answer = function() {
+      console.log( $scope.todo);
+      $mdDialog.hide($scope.todo);
   };
 };
 
