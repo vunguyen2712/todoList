@@ -152,6 +152,21 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
             return false;
         }
     }
+    $scope.deselectAllItem = function(){
+        for (var i = 0; i < $scope.todo.length; ++i){
+            $scope.todo[i].checkBox = false;
+        }
+        $scope.countItemSelected = 0;
+    }
+
+    $scope.removeSelectedItem = function(){
+        for (var i = 0; i < $scope.todo.length; ++i){
+            if($scope.todo[i].checkBox == true){
+                $scope.todo.splice(i,1);
+            }
+        }
+    }
+
     $scope.currentPage = null;
     $scope.pages = [
         {"url": "/home", "discription":"Home"},
