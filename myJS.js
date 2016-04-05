@@ -145,6 +145,13 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
             console.log('count selected: ' + $scope.countItemSelected);
         }
 
+    $scope.isOneItemSelected = function(){
+        if ($scope.countItemSelected > 0){
+            return true;
+        }else {
+            return false;
+        }
+    }
     $scope.currentPage = null;
     $scope.pages = [
         {"url": "/home", "discription":"Home"},
