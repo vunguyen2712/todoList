@@ -118,7 +118,7 @@
                               </p>
                             </div>
                             <div class="inset">
-                              <md-button> <ng-md-icon icon="check"  ng-show="item.checkButtonVisible"  aria-label="check"></ng-md-icon></md-button>
+                              <md-button> <ng-md-icon icon="check"  ng-show="item.checkButtonVisible"  ng-click="removeItem(item)" aria-label="check"></ng-md-icon></md-button>
                             </div>
                           </md-item-content>
                           <md-divider md-inset hide-sm ng-if="!$last"></md-divider>

@@ -37,6 +37,7 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
         who: 'Ali Conners',
         when: '3:08PM',
         notes: " I'll be in your neighborhood doing errands"
+
       },
       {
         what: 'Summer BBQ',
@@ -71,7 +72,8 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
         when: '3:08PM',
         notes: " I'll be in your neighborhood doing errands",
           checkButtonVisible: false,
-          checkBox: false
+          checkBox: false,
+          id: 1
       },
       {
         what: 'Summer BBQ',
@@ -79,7 +81,8 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
         when: '3:08PM',
         notes: "Wish I could come out but I'm out of town this weekend",
           checkButtonVisible: false,
-          checkBox: false
+          checkBox: false,
+          id: 2
       },
       {
         what: 'Oui Oui',
@@ -87,7 +90,8 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
         when: '3:08PM',
         notes: "Do you have Paris recommendations? Have you ever been?",
           checkButtonVisible: false,
-          checkBox: false
+          checkBox: false,
+          id: 3
       },
       {
         what: 'Birthday Gift',
@@ -95,7 +99,8 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
         when: '3:08PM',
         notes: "Have any ideas of what we should get Heidi for her birthday?",
           checkButtonVisible: false,
-          checkBox: false
+          checkBox: false,
+          id: 4
       },
       {
         what: 'Recipe to try',
@@ -103,7 +108,8 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
         when: '3:08PM',
         notes: "We should eat this: Grapefruit, Squash, Corn, and Tomatillo tacos",
           checkButtonVisible: false,
-          checkBox: false
+          checkBox: false,
+          id: 5
       },
     ];
 
@@ -112,6 +118,15 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
     }
     $scope.mouseLeaveTodoItem = function(item){ // item is an todo
         item.checkButtonVisible = false;
+    }
+    $scope.removeItem = function(item){
+        for (var i= 0; i < $scope.todo.length; ++i){
+            if ($scope.todo[i] === item){
+                $scope.todo.splice(i,1);
+                console.log(item.what + 'removed');
+            }
+        }
+
     }
     $scope.currentPage = null;
     $scope.pages = [
@@ -160,9 +175,13 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
             what: answer.what,
             where: answer.where,
             when: answer.when,
-            notes: answer.notes
+            notes: answer.notes,
+            checkButtonVisible: false,
+            checkBox: false,
+            id: $scope.todo.length+1
         };
         // alert(answer.what);
+        console.log(item);
 
 		$scope.todo.push(item);
 
@@ -204,7 +223,6 @@ app.controller('ListBottomSheetCtrl', function($scope, $mdBottomSheet) {
 });
 
 function DialogController($scope, $mdDialog, $mdToast) {
-  // $scope.todo = angular.copy( );
 
   $scope.hide = function() {
     $mdDialog.cancel();  // $mdDialog.hide() --> khi muon return answer
