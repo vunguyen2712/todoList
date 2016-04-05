@@ -159,7 +159,7 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
         $scope.countItemSelected = 0;
     }
 
-    $scope.removeSelectedItem = function(){
+    $scope.removeSelectedItems = function(){
         for (var i = 0; i < $scope.todo.length; ++i){
             if($scope.todo[i].checkBox == true){
                 $scope.todo.splice(i,1);
