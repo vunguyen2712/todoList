@@ -4,7 +4,6 @@
     <list default="true" id="0b7203af-978a-4399-9d0a-78b0c6e8fc24" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.html" afterPath="$PROJECT_DIR$/main.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/myJS.js" afterPath="$PROJECT_DIR$/myJS.js" />
     </list>
     <ignored path="todoList.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,7 +28,7 @@
         <entry file="file://$PROJECT_DIR$/main.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="146">
-              <caret line="102" column="57" selection-start-line="102" selection-start-column="44" selection-end-line="102" selection-end-column="57" />
+              <caret line="102" column="90" selection-start-line="102" selection-start-column="90" selection-end-line="102" selection-end-column="90" />
               <folding>
                 <element signature="n#style#0;n#span#0;n#h4#0;n#div#0;n#md-toolbar#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -216,12 +215,12 @@
       <option name="presentableId" value="Default" />
       <updated>1459706320277</updated>
       <workItem from="1459706323594" duration="7904000" />
-      <workItem from="1459816188606" duration="10469000" />
+      <workItem from="1459816188606" duration="10607000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18373000" />
+    <option name="totallyTimeSpent" value="18511000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -307,7 +306,7 @@
     <entry file="file://$PROJECT_DIR$/main.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="146">
-          <caret line="102" column="57" selection-start-line="102" selection-start-column="44" selection-end-line="102" selection-end-column="57" />
+          <caret line="102" column="90" selection-start-line="102" selection-start-column="90" selection-end-line="102" selection-end-column="90" />
           <folding>
             <element signature="n#style#0;n#span#0;n#h4#0;n#div#0;n#md-toolbar#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
