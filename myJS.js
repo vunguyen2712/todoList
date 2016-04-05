@@ -69,42 +69,50 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
         what: 'Brunch this weekend?',
         where: 'Irvine',
         when: '3:08PM',
-        notes: " I'll be in your neighborhood doing errands"
+        notes: " I'll be in your neighborhood doing errands",
+          checkButtonVisible: false,
+          checkBox: false
       },
       {
         what: 'Summer BBQ',
         where: 'San Jose',
         when: '3:08PM',
-        notes: "Wish I could come out but I'm out of town this weekend"
+        notes: "Wish I could come out but I'm out of town this weekend",
+          checkButtonVisible: false,
+          checkBox: false
       },
       {
         what: 'Oui Oui',
         where: 'Santa Ana',
         when: '3:08PM',
-        notes: "Do you have Paris recommendations? Have you ever been?"
+        notes: "Do you have Paris recommendations? Have you ever been?",
+          checkButtonVisible: false,
+          checkBox: false
       },
       {
         what: 'Birthday Gift',
         where: 'Anaheim',
         when: '3:08PM',
-        notes: "Have any ideas of what we should get Heidi for her birthday?"
+        notes: "Have any ideas of what we should get Heidi for her birthday?",
+          checkButtonVisible: false,
+          checkBox: false
       },
       {
         what: 'Recipe to try',
         where: 'Lawndale',
         when: '3:08PM',
-        notes: "We should eat this: Grapefruit, Squash, Corn, and Tomatillo tacos"
+        notes: "We should eat this: Grapefruit, Squash, Corn, and Tomatillo tacos",
+          checkButtonVisible: false,
+          checkBox: false
       },
     ];
-    $scope.checkHovered = false;
-    $scope.hoverIcon = 'check';
-    $scope.$watch('$scope.checkHovered', function(checkHovered){
-        if(checkHovered){
-            return 'check_circle';
-        }else{
-            return 'check';
-        }
-    })
+
+    $scope.mouseHoverTodoItem = function(item){ // item is an todo
+        item.checkButtonVisible = true;
+    }
+    $scope.mouseLeaveTodoItem = function(item){ // item is an todo
+        item.checkButtonVisible = false;
+    }
     $scope.currentPage = null;
     $scope.pages = [
         {"url": "/home", "discription":"Home"},

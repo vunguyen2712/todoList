@@ -39,7 +39,6 @@
           </md-item-content>
         </a>
       </md-item>
-    </md-list>
     </md-sidenav>
     <div layout="column" class="relative" layout-fill role="main">
       <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="showAdd($event)">
@@ -107,7 +106,7 @@
                       <h2>Todo List</h2>
                       <md-list>
                         <md-item ng-repeat="item in todo | filter:search">
-                          <md-item-content>
+                          <md-item-content ng-mouseenter="mouseHoverTodoItem(item)" ng-mouseleave="mouseLeaveTodoItem(item)">
                             <div class="md-tile-left inset" hide-sm>
                                 <user-avatar></user-avatar>
                             </div>
@@ -119,7 +118,7 @@
                               </p>
                             </div>
                             <div class="inset">
-                              <md-button> <ng-md-icon icon="{{hoverIcon}}" ng-mouseenter="checkHovered=true" ng-mouseleave="checkHovered=false"></ng-md-icon></md-button>
+                              <md-button> <ng-md-icon icon="check"  ng-show="item.checkButtonVisible"  aria-label="check"></ng-md-icon></md-button>
                             </div>
                           </md-item-content>
                           <md-divider md-inset hide-sm ng-if="!$last"></md-divider>
