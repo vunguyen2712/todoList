@@ -128,6 +128,23 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
         }
 
     }
+    // handle check boxes
+        $scope.oneItemSelected = false;
+        $scope.countItemSelected = 0;
+        $scope.oneCheck = function(item){
+            if(item.checkBox === true){
+                ++ $scope.countItemSelected;
+            }else{
+                -- $scope.countItemSelected;
+            }
+            if ($scope.countItemSelected > 0){
+                $scope.oneItemSelected = true;
+            }else {
+                $scope.oneItemSelected = false;
+            }
+            console.log('count selected: ' + $scope.countItemSelected);
+        }
+
     $scope.currentPage = null;
     $scope.pages = [
         {"url": "/home", "discription":"Home"},
