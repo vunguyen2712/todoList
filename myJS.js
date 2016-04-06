@@ -122,7 +122,12 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
     $scope.removeItem = function(item){
         for (var i= 0; i < $scope.todo.length; ++i){
             if ($scope.todo[i] === item){
+                if ($scope.todo[i].checkBox === true){
+                    -- $scope.countItemSelected;
+                }
+
                 $scope.todo.splice(i,1);
+
                 console.log(item.what + 'removed');
             }
         }
@@ -134,8 +139,10 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
         $scope.oneCheck = function(item){
             if(item.checkBox === true){
                 ++ $scope.countItemSelected;
+                // item.checkBox = true;
             }else{
                 -- $scope.countItemSelected;
+                // item.checkBox = false;
             }
             if ($scope.countItemSelected > 0){
                 $scope.oneItemSelected = true;
@@ -161,10 +168,12 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
 
     $scope.removeSelectedItems = function(){
         for (var i = 0; i < $scope.todo.length; ++i){
-            if($scope.todo[i].checkBox == true){
+            if($scope.todo[i].checkBox === true){
                 $scope.todo.splice(i,1);
             }
         }
+        $scope.countItemSelected = 0;
+        $scope.oneItemSelected = false;
     }
 
     $scope.currentPage = null;
