@@ -167,11 +167,17 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
     }
 
     $scope.removeSelectedItems = function(){
-        for (var i = 0; i < $scope.todo.length; ++i){
+        var i = $scope.todo.length;
+        while(i --){
             if($scope.todo[i].checkBox === true){
                 $scope.todo.splice(i,1);
             }
         }
+        // for (var i = 0; i < $scope.todo.length; ++i){
+        //     if($scope.todo[i].checkBox === true){
+        //         $scope.todo.splice(i,1);
+        //     }
+        // }
         $scope.countItemSelected = 0;
         $scope.oneItemSelected = false;
     }
@@ -208,7 +214,7 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
       $scope.alert = clickedItem.name + ' clicked!';
     });
   };
-  
+
   $scope.showAdd = function(ev) {
     $mdDialog.show({
       controller: DialogController,
@@ -228,7 +234,7 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
             checkBox: false,
             id: $scope.todo.length+1
         };
-        // alert(answer.what);
+
         console.log(item);
 
 		$scope.todo.push(item);
@@ -245,6 +251,27 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
     });
   };
 
+    $scope.deleteAll = function(ev) {
+        $mdDialog.show({
+                controller: DeleteAllDialogController,
+                controllerAs: 'dadc',
+                templateUrl: 'deleteAll.html',
+                tergetEvent: ev,
+                clickOutsideToClose: true
+            })
+            .then(function(answer){
+                $scope.todo.splice(0, $scope.todo.length);
+                $mdToast.show(
+                    $mdToast.simple()
+                        .content('You have deleted all tasks! You are free!')
+                        .position('top right')
+                        .hideDelay(3000)
+                );
+            }, function() {
+                console.log("Delete All Dialog canceled");
+            });
+
+    };
 
 }]);
 
@@ -270,11 +297,19 @@ app.controller('ListBottomSheetCtrl', function($scope, $mdBottomSheet) {
   };
 });
 
+function DeleteAllDialogController($scope, $mdDialog, $mdToast) {
+    $scope.cancel = function (){
+        $mdDialog.cancel();
+    }
+    $scope.answer = function(){
+        $mdDialog.hide();
+    }
+}
 function DialogController($scope, $mdDialog, $mdToast) {
 
-  $scope.hide = function() {
-    $mdDialog.cancel();  // $mdDialog.hide() --> khi muon return answer
-  };
+  // $scope.hide = function() {
+  //   $mdDialog.cancel();  // $mdDialog.hide() --> khi muon return answer
+  // };
   $scope.cancel = function() {
     $mdDialog.cancel();
   };
