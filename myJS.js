@@ -1,6 +1,6 @@
-var app = angular.module('StarterApp', ['ngMaterial', 'ngMdIcons']);
+var app = angular.module('StarterApp', ['ui.router','ngMaterial', 'ngMdIcons']);
 
-app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog', '$mdToast',
+app.controller('AppCtrl', ['$scope', '$state', '$mdBottomSheet','$mdSidenav', '$mdDialog', '$mdToast',
 
     function($scope, $mdBottomSheet, $mdSidenav, $mdDialog, $mdToast){
   $scope.toggleSidenav = function(menuId) {
@@ -8,20 +8,20 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
   };
  	$scope.menu = [
     {
+        title: 'Home',
         url: './home.html',
         description: 'Home view',
         link : '',
-        title: 'Home',
         icon: 'home'
     },
     {
+        title: 'Todo List',
         url: './main.html',
         description: 'Todo List View',
         link : '',
-        title: 'Todo List',
         icon: 'message'
     }
-    
+
   ];
   $scope.admin = [
     {
@@ -29,7 +29,7 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
       title: 'Trash',
       icon: 'delete'
     }
-    
+
   ];
   $scope.activity = [
       {
@@ -290,7 +290,7 @@ app.controller('ListBottomSheetCtrl', function($scope, $mdBottomSheet) {
     { name: 'Copy', icon: 'copy' },
     { name: 'Print this page', icon: 'print' },
   ];
-  
+
   $scope.listItemClick = function($index) {
     var clickedItem = $scope.items[$index];
     $mdBottomSheet.hide(clickedItem);
@@ -345,3 +345,21 @@ app.config(function($mdThemingProvider) {
   // $mdThemingProvider.theme('input', 'default')
   //       .primaryPalette('grey')
 });
+
+/*
+ * App view config for left navigation bar
+ *
+ */
+ app.config(function($stateProvider, $urlRouterProvider){
+
+    $urlRouterProvider.otherwise('/');
+
+    $stateProvider.state("home", {
+        url: "/home", // the url you want to display
+        templateUrl: "todoList/views/home.html"
+    })
+    $stateProvider.state("todoList", {
+        url: "/todoList",
+        templateUrl: "todoList/main.html"
+    })
+ })
