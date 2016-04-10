@@ -29,14 +29,16 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
         path: 'home',
         description: 'Home view',
         link : '',
-        icon: 'home'
+        icon: 'home',
+        selected: true
     },
     {
         title: 'Todo List',
         path: 'todoList',
         description: 'Todo List View',
         link : '',
-        icon: 'message'
+        icon: 'message',
+        selected: false
     }
 
   ];
@@ -204,6 +206,7 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
     */
     $state.go('home'); // default page
     $scope.toggleSelectPage = function(menuItem) {
+        // TODO: turn everything else off and menuItem.selected on
         $state.go(menuItem.path);
         $scope.currentPage = menuItem.path;
     };
