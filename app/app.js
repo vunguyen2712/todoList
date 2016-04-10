@@ -1,22 +1,40 @@
-var app = angular.module('StarterApp', ['ui.router','ngMaterial', 'ngMdIcons']);
+var app = angular.module('StarterApp', ['ngMaterial', 'ui.router', 'ngMdIcons']);
 
-app.controller('AppCtrl', ['$scope', '$state', '$mdBottomSheet','$mdSidenav', '$mdDialog', '$mdToast',
+/*
+ * App view config for left navigation bar
+ *
+ */
+ app.config(function($stateProvider, $urlRouterProvider){
 
-    function($scope, $mdBottomSheet, $mdSidenav, $mdDialog, $mdToast){
+    $urlRouterProvider.otherwise('/');
+
+    $stateProvider.state("home", {
+        url: "/home", // the url you want to display
+        templateUrl: "todoList/app/views/home.html"
+    })
+    $stateProvider.state("todoList", {
+        url: "/todoList",
+        templateUrl: "todoList/app/views/todoList.html"
+    })
+ })
+
+app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog', '$mdToast', '$state', '$stateParams',
+
+    function($scope, $mdBottomSheet, $mdSidenav, $mdDialog, $mdToast, $state, $stateParams){
   $scope.toggleSidenav = function(menuId) {
     $mdSidenav(menuId).toggle();
   };
  	$scope.menu = [
     {
         title: 'Home',
-        url: './home.html',
+        path: 'home',
         description: 'Home view',
         link : '',
         icon: 'home'
     },
     {
         title: 'Todo List',
-        url: './main.html',
+        path: 'todoList',
         description: 'Todo List View',
         link : '',
         icon: 'message'
@@ -193,8 +211,9 @@ app.controller('AppCtrl', ['$scope', '$state', '$mdBottomSheet','$mdSidenav', '$
         return ($scope.currentPage === page);
     };
 
-    $scope.toggleSelectPage = function(page) {
-        $scope.currentPage = page;
+    $scope.toggleSelectPage = function(menuItem) {
+      $state.go(menuItem.path);
+        $scope.currentPage = menuItem;
     };
 
   $scope.getToastPosition = function() {
@@ -345,21 +364,3 @@ app.config(function($mdThemingProvider) {
   // $mdThemingProvider.theme('input', 'default')
   //       .primaryPalette('grey')
 });
-
-/*
- * App view config for left navigation bar
- *
- */
- app.config(function($stateProvider, $urlRouterProvider){
-
-    $urlRouterProvider.otherwise('/');
-
-    $stateProvider.state("home", {
-        url: "/home", // the url you want to display
-        templateUrl: "todoList/views/home.html"
-    })
-    $stateProvider.state("todoList", {
-        url: "/todoList",
-        templateUrl: "todoList/main.html"
-    })
- })

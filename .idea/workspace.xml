@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0b7203af-978a-4399-9d0a-78b0c6e8fc24" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/main.html" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.html" afterPath="$PROJECT_DIR$/main.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/myJS.js" afterPath="$PROJECT_DIR$/myJS.js" />
     </list>
     <ignored path="todoList.iws" />
@@ -25,20 +25,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/main.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
-              <folding>
-                <element signature="n#style#0;n#h3#0;n#div#0;n#md-toolbar#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#h4#0;n#div#0;n#md-toolbar#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="myJS.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="myJS.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/myJS.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="163">
@@ -238,12 +225,12 @@
       <updated>1459706320277</updated>
       <workItem from="1459706323594" duration="7904000" />
       <workItem from="1459816188606" duration="14143000" />
-      <workItem from="1459902988289" duration="4901000" />
+      <workItem from="1459902988289" duration="5008000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26948000" />
+    <option name="totallyTimeSpent" value="27055000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -255,8 +242,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="477" y="23" width="1161" height="925" extended-state="1" />
-    <editor active="true" />
+    <frame x="477" y="23" width="1161" height="925" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15964912" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32893157" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -326,14 +313,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/myJS.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="130" column="23" selection-start-line="130" selection-start-column="16" selection-end-line="130" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../todoList.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1535">
@@ -354,10 +333,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
-          <folding>
-            <element signature="n#style#0;n#h3#0;n#div#0;n#md-toolbar#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#h4#0;n#div#0;n#md-toolbar#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myJS.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="130" column="23" selection-start-line="130" selection-start-column="16" selection-end-line="130" selection-end-column="23" />
+          <folding />
         </state>
       </provider>
     </entry>
