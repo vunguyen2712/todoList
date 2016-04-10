@@ -195,7 +195,9 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
         $scope.countItemSelected = 0;
         $scope.oneItemSelected = false;
     }
-
+    /*
+    * TODO: Tab selection is wrong after refeshing on todoList page
+    */
     // set default page so that the nav tab for home is hightlighted
     $scope.currentPage = 'home';
     $scope.isPageSelected = function(menuItem) {
@@ -206,7 +208,6 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
     */
     $state.go('home'); // default page
     $scope.toggleSelectPage = function(menuItem) {
-        // TODO: turn everything else off and menuItem.selected on
         $state.go(menuItem.path);
         $scope.currentPage = menuItem.path;
     };
