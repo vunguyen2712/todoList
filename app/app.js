@@ -190,25 +190,22 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
                 $scope.todo.splice(i,1);
             }
         }
-        // for (var i = 0; i < $scope.todo.length; ++i){
-        //     if($scope.todo[i].checkBox === true){
-        //         $scope.todo.splice(i,1);
-        //     }
-        // }
         $scope.countItemSelected = 0;
         $scope.oneItemSelected = false;
     }
 
+    // set default page so that the nav tab for home is hightlighted
     $scope.currentPage = 'home';
     $scope.isPageSelected = function(menuItem) {
         return ($scope.currentPage === menuItem.path);
     };
-
+    /*
+    * Direct content to the right html template (states are set in app.config)
+    */
     $state.go('home'); // default page
-    $scope.currentPage =
     $scope.toggleSelectPage = function(menuItem) {
-      $state.go(menuItem.path);
-        $scope.currentPage = menuItem;
+        $state.go(menuItem.path);
+        $scope.currentPage = menuItem.path;
     };
 
   $scope.getToastPosition = function() {
