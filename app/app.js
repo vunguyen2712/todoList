@@ -7,14 +7,13 @@ var app = angular.module('StarterApp', ['ngMaterial', 'ui.router', 'ngMdIcons'])
  app.config(function($stateProvider, $urlRouterProvider){
 
     $urlRouterProvider.otherwise('/');
-
     $stateProvider.state("home", {
         url: "/home", // the url you want to display
-        templateUrl: "todoList/app/views/home.html"
+        templateUrl: "app/views/home.html"
     })
     $stateProvider.state("todoList", {
         url: "/todoList",
-        templateUrl: "todoList/app/views/todoList.html"
+        templateUrl: "app/views/todoList.html"
     })
  })
 
@@ -200,17 +199,13 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
         $scope.oneItemSelected = false;
     }
 
-    $scope.currentPage = null;
-    $scope.pages = [
-        {"url": "/home", "discription":"Home"},
-        {"url": "/view1", "discription":"Todo List"}
-
-    ];
-
-    $scope.isPageSelected = function(page) {
-        return ($scope.currentPage === page);
+    $scope.currentPage = 'home';
+    $scope.isPageSelected = function(menuItem) {
+        return ($scope.currentPage === menuItem.path);
     };
 
+    $state.go('home'); // default page
+    $scope.currentPage =
     $scope.toggleSelectPage = function(menuItem) {
       $state.go(menuItem.path);
         $scope.currentPage = menuItem;
