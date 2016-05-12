@@ -2,6 +2,11 @@
 
 Create and manage a todo list. This project could be used as a starting template for a AngularJs project. 
 
+![alt tag](http://s32.postimg.org/qsz7f4k05/todolist2.png)
+
+![alt tag](http://s32.postimg.org/4n1tqijb9/todolist1.png)
+
+
 # Installation
 
 1. Install npm
